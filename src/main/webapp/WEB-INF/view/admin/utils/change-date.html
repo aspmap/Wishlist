@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title th:text="'Изменение даты создания файла - ' + #{application_name}"></title>
+  <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="frame-title-create-form">
+        <p class="logo-title-text-create-form" th:text="'Изменение даты создания файла'"></p>
+      </div>
+      <div class="frame-content-create-form">
+        <div class="form-create">
+          <form method="POST" th:action="@{/utils/change_date}" enctype="multipart/form-data">
+            <p>
+              <label>
+                <input class="input-fields" type="file" name="file" style="display: none;">
+                <img class="image-upload-file" id="profilePicture" th:src="@{/resources/img/icons/upload.png}">
+              </label>
+            </p>
+            <span th:text="'Выберите новую дату для файла'"></span>
+            <input name="newDate" class="input-fields" type="datetime-local" value="1980-01-01T12:00" required />
+            <button type="submit" class="btn-create" th:text="'Изменить дату и скачать файл'"></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>

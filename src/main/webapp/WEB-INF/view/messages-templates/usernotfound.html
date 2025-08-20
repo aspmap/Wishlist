@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title th:text="#{page_label_user_not_found} + ' - ' + #{application_name}"></title>
+  <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main">
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="frame-title-create-form">
+        <p class="logo-title-text-create-form" th:text="#{page_label_user_not_found}"></p>
+      </div>
+      <div class="frame-content-create-form">
+        <div class="form-create">
+          <p class="main-text" th:text="#{text_handshakes_user_not_found}"></p>
+          <p class="back-link-text">
+            <a th:href="@{/handshakes/find}" th:text="#{text_back_to_search_handshakes}"></a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>

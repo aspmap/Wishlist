@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title th:text="#{page_label_editing_profile} + ' - ' + #{application_name}"></title>
+  <th:block th:include="fragments.html :: header-with-add-img"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="frame-title-create-form">
+        <p class="logo-title-text-create-form" th:text="#{page_label_editing_profile}"></p>
+      </div>
+      <div class="frame-content-create-form">
+        <div class="form-create">
+          <form method="POST" th:action="@{/admin/profile_edit}" th:object="${userinfo}">
+            <input type="hidden" th:field="*{userId}"/>
+            <input th:field="*{username}" type="text" class="input-fields input" th:placeholder="#{input_enter_login}" readonly disabled required>
+            <input th:field="*{password}" type="password" class="input-fields" th:placeholder="#{input_enter_password}" maxlength="150">
+            <input th:field="*{surname}" type="text" class="input-fields" th:placeholder="#{input_enter_last_name}" maxlength="150">
+            <input th:field="*{firstname}" type="text" class="input-fields" th:placeholder="#{input_enter_name}" maxlength="150">
+            <textarea th:field="*{info}" class="input-fields" rows="5" th:placeholder="#{input_enter_information_about_yourself}" maxlength="255"></textarea>
+            <input th:field="*{www}" type="text" class="input-fields" th:placeholder="#{input_enter_site}" maxlength="150">
+            <input th:field="*{email}" type="text" class="input-fields" th:placeholder="#{input_enter_email}" maxlength="50">
+            <input th:field="*{phone}" type="text" class="input-fields" th:placeholder="#{input_enter_phone}" maxlength="20">
+            <select class="input-fields" rows="9" th:field="*{sex}">
+              <option th:value="${sex_male}" th:text="#{input_male}"></option>
+              <option th:value="${sex_female}" th:text="#{input_female}"></option>
+            </select>
+            <div class="form-text">
+              <span th:text="#{input_enter_is_closed}"></span>
+              <input th:field="*{isClosed}" type="checkbox">
+            </div>
+            <div class="form-text">
+              <span th:text="#{input_enter_is_active}"></span>
+              <input th:field="*{isActive}" type="checkbox">
+            </div>
+            <button type="submit" class="btn-create"><span th:text="#{button_edit_profile_information}"></span></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>

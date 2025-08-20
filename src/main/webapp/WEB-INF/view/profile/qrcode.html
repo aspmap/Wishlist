@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title th:text="#{page_label_qr_code} + ' - ' + #{application_name}"></title>
+  <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+  <div class="wrapper">
+    <div class="left-col">
+          <div class="frame-title-create-form">
+            <p class="logo-title-text-create-form" th:text="#{menu_qrcode}"></p>
+          </div>
+      <div class="post">
+        <div class="post-content qrcode-position">
+          <div class="view-source comments-view qrcode-view">
+            <img th:src="*{'data:image/png;base64,'+ qrQode}" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>

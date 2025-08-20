@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="header" sec:authorize="isAuthenticated()">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta name="description" content="HandsApp - социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое">
+    <meta name="keywords" content="Социальная сеть, Онлайн-сообщество, Общение, Коммуникация, Пользователи, Контент, Публикации, Профиль, Лента, Друзья, Подписчики, Посты, Комментарии, Лайки, Аудитория, Развлечения, Информация, Поиск, Хештеги, Группы, Мероприятия, События, Чат, Сообщения, Видео, Фото, Текст, Аудио">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
+    <meta property="og:type" content="HandsApp" />
+    <meta property="og:image" th:content="@{'/resources/img/icons/logo.jpg'}" />
+    <meta property="og:title" content="HandsApp" />
+    <meta property="og:description" content="HandsApp - Социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое" />
+    <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/posts.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/messages.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/menu.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/handshakes.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/pagination.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/media.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/todo.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/create-forms.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/wishlist.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/placeholder.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/footer.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/borders.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/page-list-of.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/resources/favicon.ico}" type="image/x-icon">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+    <script th:inline="javascript">var contextPath = [[${#httpServletRequest.getContextPath()}]];</script>
+    <script type="text/javascript" th:src="@{/resources/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/smiles.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/delete-post.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/get-users.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/get-playlists.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/delete-wish.js}"></script>
+</head>
+
+<head th:fragment="header-without-authentication">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Социальная сеть, Онлайн-сообщество, Общение, Коммуникация, Пользователи, Контент, Публикации, Профиль, Лента, Друзья, Подписчики, Посты, Комментарии, Лайки, Аудитория, Развлечения, Информация, Поиск, Хештеги, Группы, Мероприятия, События, Чат, Сообщения, Видео, Фото, Текст, Аудио">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
+    <meta property="og:type" content="HandsApp" />
+    <meta property="og:title" content="HandsApp" />
+    <link th:href="@{/resources/css/login.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/footer.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/sign-up.css}" rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/posts.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/messages.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/menu.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/media.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/handshakes.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/pagination.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/placeholder.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/footer.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/borders.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/page-list-of.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/resources/favicon.ico}" type="image/x-icon">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+    <script th:inline="javascript">var contextPath = [[${#httpServletRequest.getContextPath()}]];</script>
+    <script type="text/javascript" th:src="@{/resources/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/show-password-login.js}"></script>
+    <script>
+        $(function () {
+            $("form").on('change input paste', 'input', function (e) {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                if (username.length == 0 || password.length == 0) {
+                    $("#submit").attr('disabled', 'disabled');
+                    $("#submit").addClass('deactivate').removeClass('btn');
+                } else if (password.length >= 6) {
+                    $("#submit").removeAttr('disabled', 'disabled');
+                    $("#submit").addClass('btn-create').removeClass('deactivate');
+                }
+            });
+        });
+    </script>
+</head>
+
+<head th:fragment="header-login" sec:authorize="isAuthenticated()">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta name="description" content="HandsApp - социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое">
+    <meta name="keywords" content="Социальная сеть, Онлайн-сообщество, Общение, Коммуникация, Пользователи, Контент, Публикации, Профиль, Лента, Друзья, Подписчики, Посты, Комментарии, Лайки, Аудитория, Развлечения, Информация, Поиск, Хештеги, Группы, Мероприятия, События, Чат, Сообщения, Видео, Фото, Текст, Аудио">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
+    <meta property="og:type" content="HandsApp" />
+    <meta property="og:image" th:content="@{'/resources/img/icons/logo.jpg'}" />
+    <meta property="og:title" content="HandsApp" />
+    <meta property="og:description" content="HandsApp - Социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+    <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/posts.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/menu.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/media.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/placeholder.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/footer.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/resources/favicon.ico}" type="image/x-icon">
+    <script type="text/javascript" th:src="@{/resources/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery-1.11.0.min.js}"></script>
+</head>
+
+<head th:fragment="header-with-add-img" sec:authorize="isAuthenticated()">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta name="description" content="HandsApp - социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое">
+    <meta name="keywords" content="Социальная сеть, Онлайн-сообщество, Общение, Коммуникация, Пользователи, Контент, Публикации, Профиль, Лента, Друзья, Подписчики, Посты, Комментарии, Лайки, Аудитория, Развлечения, Информация, Поиск, Хештеги, Группы, Мероприятия, События, Чат, Сообщения, Видео, Фото, Текст, Аудио">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
+    <meta property="og:type" content="HandsApp" />
+    <meta property="og:image" th:content="@{'/resources/img/icons/logo.jpg'}" />
+    <meta property="og:title" content="HandsApp" />
+    <meta property="og:description" content="HandsApp - Социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css">
+    <link th:href="@{/resources/css/crop.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/handshakes.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/create-forms.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/crop-img-buttons.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/posts.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/menu.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/media.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/placeholder.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/footer.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/resources/favicon.ico}" type="image/x-icon">
+    <script type="text/javascript" th:src="@{/resources/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/crop.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" th:fragment="navigation" sec:authorize="isAuthenticated()">
+    <div class="nav-wrapper">
+        <a th:href="@{/}"><img th:src="@{/resources/img/nav/handsapp.png}" class="brand-img" alt=""></a>
+        <form class="search-form" method="GET" th:action="@{/search}">
+            <input type="text" class="search-box" name="search" th:placeholder="#{input_find}" maxlength="150" minlength="2">
+        </form>
+        <div class="nav-items">
+            <div class="icon user-profile" sec:authorize="isAuthenticated()">
+                <ul class="icon user-profile nav-list">
+                    <li>
+                        <img th:if="${userinfo.photo == null}" class="icon user-profile" th:src="@{'/resources/img/icons/avatar.jpg'}" alt="">
+                        <img th:if="${userinfo.photo != null and userinfo.isGoogle == false}" class="icon user-profile" th:src="@{'/resources/img/users/' + ${user} + '/profile/' + ${userinfo.photo}}" alt="">
+                        <img th:if="${userinfo.photo != null and userinfo.isGoogle == true}" class="icon user-profile" th:src="${userinfo.photo}" alt="">
+                        <ul class="nalumes-nucludem">
+                            <li sec:authorize="hasRole('USER')">
+                                <a th:href="@{/}"><span th:text="#{menu_my_wishlist}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('USER')">
+                                <a th:href="@{/add}"><span th:text="#{button_add_wishlist}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('USER')">
+                                <a th:href="@{/wishlist_my_booking}"><span th:text="#{text_wishlist_reservations}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('USER')">
+                                <a th:href="@{/done}"><span th:text="#{page_label_wishlist_done}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('USER')">
+                                <a th:href="@{/profile_edit/{user}(user = ${user})}"><span th:text="#{menu_settings}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('USER')">
+                                <a th:href="@{/qrcode}"><span th:text="#{menu_qrcode}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('ADMIN')">
+                                <a th:href="@{/admin/all_users}"><span th:text="#{menu_users}"></span></a>
+                            </li>
+                            <li sec:authorize="hasRole('ADMIN')">
+                                <a th:href="@{/bugs}"><span th:text="#{menu_bugs}"></span></a>
+                            </li>
+                            <li>
+                                <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><span th:text="#{menu_logout}"></span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div sec:authorize="isAuthenticated()" class="second-menu">
+        <div class="second-menu-info">
+            <a sec:authorize="hasRole('USER')" class="audio-add" th:href="@{/}"><span th:text="#{menu_my_wishlist}"></span></a>
+            <a sec:authorize="hasRole('USER')" class="audio-add" th:href="@{/add}"><span th:text="#{button_add_wishlist}"></span></a>
+            <a sec:authorize="hasRole('USER')" class="audio-add" th:href="@{/wishlist_my_booking}"><span th:text="#{text_wishlist_reservations}"></span></a>
+            <a sec:authorize="hasRole('USER')" class="audio-add" th:href="@{/done}"><span th:text="#{page_label_wishlist_done}"></span></a>
+            <a sec:authorize="hasRole('USER')" class="audio-add" th:href="@{/profile_edit/{user}(user = ${user})}"><span th:text="#{menu_settings}"></span></a>
+            <a sec:authorize="hasRole('USER')" class="audio-add" th:href="@{/qrcode}"><span th:text="#{menu_qrcode}"></span></a>
+            <a sec:authorize="hasRole('ADMIN')" class="audio-add" th:href="@{/admin/all_users}"><span th:text="#{menu_users}"></span></a>
+            <a sec:authorize="hasRole('ADMIN')" class="audio-add" th:href="@{/bugs}"><span th:text="#{menu_bugs}"></span></a>
+            <a class="audio-add" th:href="@{/logout}"><span th:text="#{menu_logout}"></span></a>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar" th:fragment="navigation-without-authentication" sec:authorize="!isAuthenticated()">
+    <div class="nav-wrapper">
+        <a th:href="@{/}"><img th:src="@{/resources/img/nav/handsapp.png}" class="brand-img" alt=""></a>
+    </div>
+    <div class="second-menu">
+        <div class="second-menu-info">
+            <a class="second-menu-add" th:href="@{/}"><span th:text="#{text_auth_main}"></span></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Right Column -->
+<div sec:authorize="!isAuthenticated()" th:fragment="right-column-unauth">
+    <div class="image-container">
+        <img th:src="@{/resources/img/login/signup-page.png}" alt="HandsApp In Phone Image">
+    </div>
+</div>
+
+<div class="right-col" th:fragment="right-column">
+
+    <!-- Recomendations and login -->
+    <p sec:authorize="isAuthenticated()" class="suggestion-text"><span th:text="#{text_recommendations_for_you}"></span></p>
+    <div sec:authorize="isAuthenticated()" class="profile-card" th:each="users: ${usersOnlyKey}" th:if="${!users.username.equals(user)}">
+        <div class="profile-pic">
+            <a th:href="@{/wishlist_subscriber/{user}(user = ${users.username})}">
+                <img th:if="${users.photo == ''}" th:src="@{'/resources/img/icons/avatar.jpg'}" alt="">
+                <img th:if="${users.photo != '' and users.isGoogle == 'f'}" th:src="@{'/resources/img/users/' + ${users.username} + '/profile/' + ${users.photo}}" alt="">
+                <img th:if="${users.photo != '' and users.isGoogle == 't'}" th:src="${users.photo}" alt="">
+            </a>
+        </div>
+        <div>
+            <div>
+            <a th:href="@{/wishlist_subscriber/{user}(user = ${users.username})}">
+                <span th:if="${users.isGoogle == 'f'}" th:text="${users.username}" class="username"></span>
+                <span th:if="${users.isGoogle == 't'}" th:text="${users.email}" class="username"></span>
+            </a>
+            <a th:if="${users.isSub == '0'}" th:href="@{/wishlist_subscriber/subscription_from_recommendations/{user}(user = ${users.username})}" class="sub-btn" th:text="#{button_subscribe}"></a>
+            </div>
+                <p th:if="${users.surname != null && users.firstname != null}" th:text="${users.surname} + ' ' + ${users.firstname}" class="sub-text"></p>
+
+        </div>
+    </div>
+
+    <div sec:authorize="!isAuthenticated()" class="wrapper">
+        <div class="header-right">
+            <div>
+                <div class="form-container">
+                    <div class="signup-right">
+                        <p th:text="#{text_have_an_account} + '?'"></p>
+                        <a th:href="@{/login}" th:text="#{text_to_come_in}"></a>
+                    </div>
+                    <div class="signup-right">
+                        <p th:text="#{text_you_dont_have_an_account_yet} + '?'"></p>
+                        <a th:href="@{/register}" th:text="#{text_register}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Window -->
+<div th:fragment="modal-window" class="modal fade" id="profileImageModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" sec:authorize="isAuthenticated()">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel" th:text="#{text_image_upload}"></h5>
+                <button type="button" class="btn-close-x" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="thumbimg ">
+                        <input type="file" name="image" id="image" style="display:none;" accept="image/png, image/gif, image/jpeg">
+                        <button type="button" onclick="image.click();" class="btn-choose" th:text="#{button_choose_an_image}"></button>
+                        <div class="showimg  d-flex justify-content-center pt-3" >
+                            <div class="row imgdiv" id="imgdiv" style="" >
+                                <img id="imagecan">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" onclick="onClickUpload()" class="btn-upload" th:text="#{button_download}">
+                    <i class="fa fa-spinner fa-spin showloading" style="color:white; font-size:12px; display:none;  position:absolute; margin-left: 3px; margin-top: 4px;"></i>
+                </button>
+                <button type="button" class="btn-close-crop" data-dismiss="modal" th:text="#{button_close}"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Window End -->
+
+<!-- Footer -->
+<p class="main-text-footer" th:fragment="footer-login">© 2025-<span th:text="${currentYear}"></span> <span th:text="#{application_name}"></span><span th:if="${majorVersion != null}" th:text="' (' + ${majorVersion} + '.' + ${minorVersion} + '.' + ${microVersion} + ' ' + ${stageVersion} + ')'"></span>. <span th:text="#{text_found_an_error}"></span>? <a th:href="@{/bugs/create}" th:text="#{text_write_to_us}"></a>
+    <br>
+    <span class="text-lang" th:text="#{text_choose_language}"></span>: <a th:href="@{/?lang=en}" th:text="#{label_en}"></a> <a th:href="@{/?lang=ru}" th:text="#{label_ru}"></a>
+</p>
+
+<footer class="main-text-footer" th:fragment="footer">© 2025-<span th:text="${currentYear}"></span> <span th:text="#{application_name}"></span><span th:if="${majorVersion != null}" th:text="' (' + ${majorVersion} + '.' + ${minorVersion} + '.' + ${microVersion} + ' ' + ${stageVersion} + ')'"></span>. <span th:text="#{text_found_an_error}"></span>? <a th:href="@{/bugs/create}" th:text="#{text_write_to_us}"></a>
+    <br>
+    <span class="text-lang" th:text="#{text_choose_language}"></span>: <a th:href="@{/?lang=en}" th:text="#{label_en}"></a> <a th:href="@{/?lang=ru}" th:text="#{label_ru}"></a>
+</footer>
+
+</body>
+</html>

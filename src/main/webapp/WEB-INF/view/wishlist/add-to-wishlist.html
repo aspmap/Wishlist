@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title th:text="#{page_label_new_wishlist} + ' - ' + #{application_name}"></title>
+  <th:block th:include="fragments.html :: header-with-add-img"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="frame-title-create-form">
+        <p class="logo-title-text-create-form" th:text="#{page_label_new_wishlist}"></p>
+      </div>
+      <div class="frame-content-create-form">
+        <div class="form-create">
+          <form method="POST" th:action="@{/add}" enctype="multipart/form-data">
+            <textarea id="blob-img" name="photo" class="input-fields" rows="4" placeholder="" style="display:none;"></textarea>
+            <div>
+              <img class="image-upload-file" id="profilePicture" th:src="@{/resources/img/icons/upload.png}" data-target="#profileImageModal" data-toggle="modal">
+            </div>
+
+            <!-- Modal Window -->
+            <div th:insert="fragments.html :: modal-window"></div>
+            <!-- Modal Window End -->
+
+            <input name="nameWish" class="input-fields" th:placeholder="#{input_enter_name_wish}" maxlength="350" required />
+            <textarea name="description" class="input-fields" rows="4" th:placeholder="#{input_enter_description_wish}" maxlength="500" required></textarea>
+            <input name="price" class="input-fields" th:placeholder="#{input_enter_price_wish}" maxlength="15" required />
+            <input name="link" class="input-fields" th:placeholder="#{input_enter_link_wish}"  maxlength="500" required />
+            <div class="form-text">
+              <span th:text="#{input_enter_private_wish}"></span>
+              <input name="isSecret" type="checkbox">
+            </div>
+            <button type="submit" class="btn-create" th:text="#{button_add_wishlist_element}"></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+.videocontainer1{
+    width: 300px;
+    overflow:hidden;
+    display:block;
+    height: 300px;
+}
+#glass{
+    margin-left: -220px;
+}

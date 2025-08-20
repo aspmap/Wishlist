@@ -1,0 +1,4 @@
+.round {
+    border-radius: 50px; /* Радиус скругления */
+    border: 3px solid greenyellow; /* Параметры рамки */
+}

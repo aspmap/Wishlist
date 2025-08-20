@@ -1,0 +1,19 @@
+.checkbox_complete {
+    text-align: center;
+    width: 5%;
+}
+
+.todo-text {
+    text-align: left;
+    width: 90%;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.todo-date {
+    font-size: 14px;
+    padding-left: 10px;
+    border: 1px solid #dfdfdf;
+    padding: 10px 10px;
+    color: #6c757d;
+}

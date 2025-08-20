@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="#{page_label_admin_users} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+    <div class="wrapper">
+        <div class="left-col">
+            <div class="post">
+                <div class="info">
+                    <div class="user">
+                        <p class="comments-logo" th:text="'Пользователи'"></p>
+                    </div>
+                    <a class="audio-add" th:href="@{/admin/all_users}"><span th:text="'В порядке регистрации'"></span></a>
+                    <a class="audio-add" th:href="@{/admin/active_users}"><span th:text="'В порядке авторизации'"></span></a>
+                </div>
+            </div>
+            <div class="post">
+                <div class="info">
+                    <div class="user">
+                        <p class="comments-logo" th:text="#{text_found_users}"></p>
+                        <p class="comments-logo" th:text="'(' + ${countSearchUsers} + ')'"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="post-content">
+                    <div class="view-source comments-view">
+                        <div th:each="results: ${findActiveUsers}">
+                            <div class="media-body">
+                                <div class="info-comments">
+                                    <div class="user-comments">
+                                        <div  class="profile-card">
+                                            <div class="profile-pic-comments">
+                                                <a th:href="@{/page/{user}(user = ${results.username})}">
+                                                    <img th:if="${results.photo == null}" th:src="@{'/resources/img/icons/avatar.jpg'}" alt="">
+                                                    <img th:if="${results.photo != null and results.isGoogle == false}" th:src="@{'/resources/img/users/' + ${results.username} + '/profile/' + ${results.photo}}" alt="">
+                                                    <img th:if="${results.photo != null and results.isGoogle == true}" th:src="${results.photo}" alt="">
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a th:if="${results.isGoogle == false}" th:href="@{/page/{user}(user = ${results.username})}">
+                                                    <b class="description-comments-user">
+                                                        <span th:text="${results.username}"></span>
+                                                    </b>
+                                                </a>
+                                                <a th:if="${results.isGoogle == true}" th:href="@{/page/{user}(user = ${results.username})}">
+                                                    <b class="description-comments-user">
+                                                        <span th:text="${results.email}"></span>
+                                                    </b>
+                                                </a>
+                                                <div>
+                                                    <p th:if="${results.surname != null && results.firstname != null}" class="post-time-comments" th:text="${results.surname} + ' ' + ${results.firstname}"></p>
+                                                    <p class="post-time-comments" th:text="${#temporals.format(results.lastVisit, 'dd.MM.yyyy')} + ' ' + #{text_date_year}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:each="results: ${findGoogleUsers}">
+                            <div class="media-body">
+                                <div class="info-comments">
+                                    <div class="user-comments">
+                                        <div  class="profile-card">
+                                            <div class="profile-pic-comments">
+                                                <a th:href="@{/{user}(user = ${results.username})}">
+                                                    <img th:if="${results.photo == null}" th:src="@{'/resources/img/icons/avatar.jpg'}" alt="">
+                                                    <img th:if="${results.photo != null}" th:src="${results.photo}" alt="">
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a th:href="@{/page/{user}(user = ${results.username})}">
+                                                    <b class="description-comments-user">
+                                                        <span th:text="${results.email}"></span>
+                                                    </b>
+                                                </a>
+                                                <div>
+                                                    <p th:if="${results.surname != null && results.firstname != null}" class="post-time-comments" th:text="${results.surname} + ' ' + ${results.firstname}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="usersNotFound" th:if="${countSearchUsers == 0 && countSearchGoogleUsers == 0}" th:text="#{text_users_not_found}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+</section>
+
+</body>
+</html>

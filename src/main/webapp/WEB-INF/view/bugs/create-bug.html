@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="#{page_label_send_feedback} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()" >
+    <div class="wrapper">
+        <div class="left-col">
+            <div class="frame-title-create-form">
+                <p class="logo-title-text-create-form" th:text="#{page_label_send_feedback}"></p>
+            </div>
+            <div class="frame-content-create-form">
+                <div class="form-create">
+                    <form method="POST" th:action="@{/bugs/create}">
+                        <textarea name="bugText" class="input-fields" rows="5" th:placeholder="#{input_describe_error}" maxlength="255" required></textarea>
+                        <button type="submit" class="btn-create" th:text="#{button_submit_a_bug_report}"></button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title th:text="#{text_search_error} + ' - ' + #{application_name}"></title>
+  <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main">
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="frame-title-create-form">
+        <p class="logo-title-text-create-form" th:text="#{text_search_error}"></p>
+      </div>
+      <div class="frame-content-create-form">
+        <div class="form-create">
+          <p class="main-text" th:text="#{text_search_error_description}"></p>
+          <p class="back-link-text">
+            <a th:href="@{/}" th:text="#{text_back_to_main_page}"></a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>

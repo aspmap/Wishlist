@@ -1,0 +1,140 @@
+.info-messages-left {
+    width: 100%;
+    /*height: 60px;*/
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0 0px;
+    margin-bottom: 10px;
+}
+
+.info-messages-right {
+    width: 100%;
+    /*height: 60px;*/
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0 0px;
+    margin-bottom: 10px;
+}
+
+.time-message-left {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
+.time-message-right {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
+.dialog-message-left {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 0px;
+    width: 350px;
+    position: sticky;
+}
+
+.dialog-message-right {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 0px;
+    width: 350px;
+    position: sticky;
+}
+
+.dialogs-right {
+    margin-left: 30%;
+}
+
+.dialogs-left {
+    margin-right: 30%;
+}
+
+.scroll-dialog {
+    height: 550px;
+    overflow-y: scroll;
+}
+
+.profile-pic-messages img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-pic-messages {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0px;
+    margin-right: 10px;
+    margin-left: 7px;
+}
+
+.circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+   /* border: 1px solid black;*/
+    background-color: #f9595f;
+    color: #ffffff;
+}
+
+.dialogs-table {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.dialog-count-column {
+    text-align: right;
+}
+
+.dialog-username-column {
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.dialog-userimg-column {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+}
+
+.reading-message {
+    font-size: 10px;
+    text-align: right;
+    color: green;
+}
+
+.reading-message-img {
+    width: 13px;
+}
+
+.smiles-messages {
+    margin-top: 0px;
+}
+
+.div-smiles-messages {
+    margin-left: 15px;
+}
+
+.smiles-messages-button {
+    background: white;
+    border: 0px; !important;
+}

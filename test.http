@@ -1,0 +1,10 @@
+//GET http://localhost:8080/api/post?search=mo
+//Content-Type: application/json; charset=UTF-8;
+
+//GET http://localhost:8080/api/post
+//Content-Type: application/json; charset=UTF-8;
+
+POST http://localhost:8080/api/post
+Content-Type: application/json; charset=UTF-8
+
+{"photo": "gfpdohum.png","extFile": "png","content": "Test API create","createdAt": "2022-06-12 02:18:59"}

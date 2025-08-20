@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="#{text_wishlist_reservations} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+    <div class="wrapper">
+        <div class="left-col">
+
+            <!-- Wishlist -->
+
+                    <div class="frame-title-create-form">
+                        <p class="logo-title-text-create-form" th:text="#{text_wishlist_reservations}"></p>
+                    </div>
+
+            <div class="post">
+                <div class="post-content">
+                    <div class="view-source comments-view">
+                        <div th:if="${!bookingWishlists.isEmpty()}" th:each="wishlistAll_view: ${bookingWishlists}" th:id="'wishlist-' + ${wishlistAll_view.wishlistId}" th:name="'wishlist-' + ${wishlistAll_view.wishlistId}">
+                            <div class="media-body">
+                                <div class="info-comments">
+                                    <table class="dialogs-table">
+                                        <tr>
+                                            <td class="td-wishlist-photo">
+                                                <a th:href="@{/wishlist_subscriber/} + ${wishlistAll_view.user}">
+                                                    <img th:src="@{'/resources/img/users/' + ${wishlistAll_view.user} + '/wishlist/' + ${wishlistAll_view.photo}}" class="wishlist-photo" />
+                                                </a>
+                                                <div>
+                                                    <img class="img-icon" th:if="${wishlistAll_view.secret == true}" th:src="@{'/resources/img/icons/private.png'}" />
+                                                    <span th:if="${wishlistAll_view.secret == true}" class="wishlist-text" th:text="#{text_wishlist_private}"></span>
+                                                </div>
+                                                <div>
+                                                    <img class="img-icon" th:if="${wishlistAll_view.secret == false}" th:src="@{'/resources/img/icons/public.png'}" />
+                                                    <span th:if="${wishlistAll_view.secret == false}" class="wishlist-text" th:text="#{text_wishlist_public}"></span>
+                                                </div>
+                                                <div th:if="${wishlistAll_view.isBooking() == false || wishlistAll_view.isBooking() == null}">
+                                                    <img class="img-icon" th:src="@{'/resources/img/icons/ok.png'}" />
+                                                    <a class="wishlist-add" th:href="@{/booking_wishlist/booking/} + ${wishlistAll_view.user} + '/' + ${wishlistAll_view.wishlistId}"><span th:text="#{button_book_wish}"></span></a>
+                                                </div>
+
+                                                <div th:if="${wishlistAll_view.isBooking() == true && wishlistAll_view.bookingUser.equals(userinfo.userId)}">
+                                                    <img class="img-icon" th:src="@{'/resources/img/icons/delete.png'}" />
+                                                    <a class="wishlist-add" th:href="@{/booking_wishlist/unbooking/} + ${wishlistAll_view.user} + '/' + ${wishlistAll_view.wishlistId}"><span th:text="#{button_unbook_wish}"></span></a>
+                                                </div>
+                                            </td>
+                                            <td class="td-wishlist-text">
+                                                <p class="wishlist-text-logo" th:text="${wishlistAll_view.nameWish}"></p>
+                                                <p class="wishlist-text" th:text="#{text_wishlist_description} + ' ' + ${wishlistAll_view.description}"></p>
+                                                <p class="wishlist-text" th:text="#{text_wishlist_price} + ' ' + ${wishlistAll_view.price} + ' ' + #{text_wishlist_rub}"></p>
+                                                <span class="wishlist-text" th:text="#{text_wishlist_link} + ' '"></span><a class="wishlist-text" th:href="${wishlistAll_view.link}" th:text="${wishlistAll_view.link}"></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${bookingWishlists.isEmpty()}">
+                            <div class="media-body">
+                                <div class="view-source comments-view">
+                                    <br><br><br>
+                                    <h1 class="h3 mb-3 font-weight-normal text-center"
+                                        th:text="#{text_no_wishlist_reservations}"></h1>
+                                    <br><br><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+</section>
+
+</body>
+</html>

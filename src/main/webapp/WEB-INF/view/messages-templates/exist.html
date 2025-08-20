@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{page_label_the_user_exists} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main">
+    <div class="wrapper">
+        <div class="left-col">
+            <div class="frame-title-create-form">
+                <p class="logo-title-text-create-form" th:text="#{text_error}"></p>
+            </div>
+            <div class="frame-content-create-form">
+                <div class="form-create">
+                    <p class="main-text" th:text="#{text_the_user_exists}"></p>
+                    <p class="back-link-text">
+                        <a th:href="@{/register}" th:text="#{text_back_to_registration_page}"></a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer-login"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column-unauth"></div>
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+</section>
+
+</body>
+</html>

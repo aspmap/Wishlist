@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="#{page_label_errors} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+    <div class="wrapper">
+        <div class="left-col">
+            <div class="post">
+                <div class="info">
+                    <div class="user">
+                        <p class="comments-logo" th:text="#{text_bug_reports}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post" th:each="bug: ${bugs}" th:id="'bugs-' + ${bug.bugId}">
+                <div class="info">
+                    <div class="user">
+                        <div class="profile-pic">
+                            <a th:href="@{/page/{user}(user = ${bug.userId.username})}">
+                                <img th:if="${bug.userId.photo == null || bug.userId.photo == ''}" th:src="@{'/resources/img/icons/avatar.jpg'}">
+                                <img th:if="${bug.userId.photo != null and bug.userId.isGoogle == false}" th:src="@{'/resources/img/users/' + ${bug.userId.username} + '/profile/' + ${bug.userId.photo}}">
+                                <img th:if="${bug.userId.photo != null and bug.userId.isGoogle == true}" th:src="${bug.userId.photo}" alt="">
+                            </a>
+                        </div>
+                        <a th:if="${bug.userId.isGoogle == false}" th:href="@{/page/{user}(user = ${bug.userId.username})}">
+                            <b class="username">
+                                <span th:text="${bug.userId.username}"></span>
+                            </b>
+                        </a>
+                        <a th:if="${bug.userId.isGoogle == true}" th:href="@{/page/{user}(user = ${bug.userId.username})}">
+                            <b class="username">
+                                <span th:text="${bug.userId.email}"></span>
+                            </b>
+                        </a>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <span class="description-normal" th:text="${bug.bugText}"></span>
+                    <p class="post-time" th:text="${#temporals.format(bug.createdAt, 'dd.MM.yyyy')} + ' ' + #{text_date_year}"></p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+
+</section>
+
+</body>
+</html>

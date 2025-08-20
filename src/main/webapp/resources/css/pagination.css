@@ -1,0 +1,7 @@
+.pages {
+    --bs-text-opacity: 1;
+    color: #6c757d !important;
+    margin-top: 30px;
+    text-align: center;
+    word-spacing: 10px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="#{page_label_add_permission} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+    <div class="wrapper">
+        <div class="left-col">
+            <div class="frame-title-create-form">
+                <p class="logo-title-text-create-form" th:text="#{page_label_add_permission}"></p>
+            </div>
+            <div class="frame-content-create-form">
+                <div class="form-create">
+                    <div class="search_box">
+                        <form method="POST" th:action="@{/permissions/add}">
+                            <input type="hidden" name="wishlistIdWishlistPrivate" th:value="${id}"/>
+                            <input name="userWishlistPrivate" id="search-users" class="input-fields" th:placeholder="#{input_enter_username_wish}" maxlength="150" required />
+                            <div id="search_box-result"></div>
+                            <button type="submit" class="btn-create" th:text="#{button_add_permission}"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="#{text_subscriptions} + ' - ' + #{application_name}"></title>
+    <th:block th:include="fragments.html :: header"/>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+    <div class="wrapper">
+        <div class="left-col">
+
+            <!-- Subscriptions -->
+            <div class="post">
+                <div class="info">
+                    <div class="user">
+                        <p class="comments-logo" th:text="#{text_subscriptions}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="post-content">
+                    <div class="view-source comments-view">
+                        <div th:each="subs: ${sub}">
+                            <div class="media-body">
+                                <div class="info-comments">
+                                    <div class="user-comments">
+                                        <div class="profile-card">
+                                            <div class="profile-pic-comments">
+                                                <a th:href="@{/wishlist_subscriber/{user}(user = ${subs.subUserId.username})}">
+                                                    <img th:if="${subs.subUserId.photo == null}" th:src="@{'/resources/img/icons/avatar.jpg'}" alt="">
+                                                    <img th:if="${subs.subUserId.photo != null and subs.subUserId.isGoogle == false}" th:src="@{'/resources/img/users/' + ${subs.subUserId.username} + '/profile/' + ${subs.subUserId.photo}}" alt="">
+                                                    <img th:if="${subs.subUserId.photo != null and subs.subUserId.isGoogle == true}" th:src="${subs.subUserId.photo}" alt="">
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a th:href="@{/wishlist_subscriber/{user}(user = ${subs.subUserId.username})}">
+                                                    <b th:if="${subs.subUserId.isGoogle == false}" class="description-comments-user"><span th:text="${subs.subUserId.username}"></span></b>
+                                                    <b th:if="${subs.subUserId.isGoogle == true}" class="description-comments-user"><span th:text="${subs.subUserId.email}"></span></b>
+                                                </a>
+                                                <div>
+                                                    <p th:if="${subs.subUserId.surname != null && subs.subUserId.firstname != null}" class="post-time-comments" th:text="${subs.subUserId.surname} + ' ' + ${subs.subUserId.firstname}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${sub.isEmpty()}">
+                            <p class="usersNotFound"  th:text="#{text_the_user_has_no_subscriptions}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recomendations -->
+            <div class="post">
+                <div class="info">
+                    <div class="user">
+                        <p class="comments-logo" th:text="#{text_recommendations_for_you}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="post-content">
+                    <div class="view-source comments-view">
+                        <div th:each="users: ${userOnlyList}" th:if="${!users.username.equals(user)}">
+                            <div class="media-body">
+                                <div class="info-comments">
+                                    <div class="user-comments">
+                                        <div class="profile-card">
+                                            <div class="profile-pic-comments">
+                                                <a th:href="@{/wishlist_subscriber/{user}(user = ${users.username})}">
+                                                    <img th:if="${users.photo == null}" th:src="@{'/resources/img/icons/avatar.jpg'}" alt="">
+                                                    <img th:if="${users.photo != null and users.isGoogle == false}" th:src="@{'/resources/img/users/' + ${users.username} + '/profile/' + ${users.photo}}" alt="">
+                                                    <img th:if="${users.photo != null and users.isGoogle == true}" th:src="${users.photo}" alt="">
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a th:href="@{/wishlist_subscriber/{user}(user = ${users.username})}">
+                                                    <b th:if="${users.isGoogle == false}" class="description-comments-user"><span th:text="${users.username}"></span></b>
+                                                    <b th:if="${users.isGoogle == true}" class="description-comments-user"><span th:text="${users.email}"></span></b>
+                                                </a>
+                                                <div>
+                                                    <p th:if="${users.surname != null && users.firstname != null}" class="post-time-comments" th:text="${users.surname} + ' ' + ${users.firstname}" ></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+
+        <!-- Right Column -->
+        <div th:insert="fragments.html :: right-column"></div>
+    </div>
+</section>
+
+</body>
+</html>

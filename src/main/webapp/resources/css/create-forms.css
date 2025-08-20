@@ -1,0 +1,126 @@
+.frame-title-create-form {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #898989;
+    margin-top: 10px;
+}
+
+.logo-title-text-create-form {
+    width: auto;
+    font-weight: normal;
+    color: #000;
+    font-size: 24px;
+    margin-left: 10px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.frame-content-create-form {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #898989;
+    margin-top: 10px;
+}
+
+.form-create {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 20px 20px 0px 20px;
+}
+
+.input-fields {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 14px;
+    border: 1px solid #dfdfdf;
+    padding: 10px 10px;
+    margin: 5px 0;
+    line-height: 20px;
+}
+
+.input:disabled {
+    background-color: #f5f5f5;
+}
+
+.btn-create {
+    margin: 10px 0;
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    border-radius: 4px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.btn-create:hover{
+    background-color: #0f87f6;
+    border: 1px solid #0f87f6;
+    color: white;
+}
+
+.btn-delete {
+    margin: 10px 0;
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.btn-delete:hover{
+    background-color: #d5081b;
+    border: 1px solid #d5081b;
+    color: white;
+}
+
+.form-text {
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.main-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    margin-left: 5px;
+}
+
+.main-text-bold {
+    font-size: 14px;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.back-link-text {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.image-upload-file {
+    width: 150px;
+}
+
+.smiles-create-form {
+    border: 0px;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{page_label_registration} + ' - ' + #{application_name}"></title>
+    <link th:href="@{/resources/css/login.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/sign-up.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/footer.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/resources/favicon.ico}" type="image/x-icon">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta name="description" content="HandsApp - социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое">
+    <meta name="keywords" content="Социальная сеть, Онлайн-сообщество, Общение, Коммуникация, Пользователи, Контент, Публикации, Профиль, Лента, Друзья, Подписчики, Посты, Комментарии, Лайки, Аудитория, Развлечения, Информация, Поиск, Хештеги, Группы, Мероприятия, События, Чат, Сообщения, Видео, Фото, Текст, Аудио">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
+    <meta property="og:type" content="HandsApp" />
+    <meta property="og:url" content="https://handsapp.top/register" />
+    <meta property="og:title" content="HandsApp" />
+    <meta property="og:description" content="Социальная сеть, ориентированная на обмен фотографиями, видео, создание вишлистов, TODO-задач, прослушивание музыки и многое другое" />
+    <meta property="og:image" content="https://handsapp.top/resources/img/icons/logo.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/resources/js/show-password-register.js}"></script>
+    <script>
+        $(function() {
+            $("form").on('change input paste', 'input', function(e) {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var password_repeat = $('#password_repeat').val();
+                if (username.length == 0 || password.length == 0) {
+                    $("#submit").attr('disabled', 'disabled');
+                    $("#submit").addClass('deactivate').removeClass('btn');
+                } else if ((password.length >= 6) && (password == password_repeat)) {
+                    $("#submit").removeAttr('disabled', 'disabled');
+                    $("#submit").addClass('btn').removeClass('deactivate');
+                    $("#password-same").addClass('password-same');
+                } else if ((password.length >= 6) && (password != password_repeat)) {
+                    $("#submit").attr('disabled', 'disabled');
+                    $("#submit").addClass('deactivate').removeClass('btn');
+                    $("#password-same").removeClass('password-same');
+                }
+            });
+        });
+    </script>
+</head>
+
+<!-- Navigation -->
+<div class="wrapper">
+    <div class="header">
+        <div class="main-container">
+            <div class="image-container" id="image-container-login">
+                <img th:src="@{/resources/img/login/signup-page.png}" alt="HandsApp In Phone Image">
+            </div>
+            <div class="form-container">
+                <div class="top">
+                    <div class="logo">
+                        <img th:src="@{/resources/img/nav/handsapp.png}" alt="HandsApp">
+                        <p class="apps" th:text="#{text_reg_you}"></p>
+                        <br>
+                    </div>
+                    <form th:action="@{/register}" method="POST">
+                        <div class="form">
+                            <div class="input_field">
+                                <input type="text" name="username" th:placeholder="#{input_username}" id="username" class="input" maxlength="150" required>
+                            </div>
+                            <div class="input_field password">
+                                <input type="password" name="password" th:placeholder="#{input_password}" id="password" class="input" minlength="6" maxlength="150" required>
+                                <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                            </div>
+                            <div class="input_field password">
+                                <input type="password" name="password_repeat" th:placeholder="#{input_password_repeat}" id="password_repeat" class="input" minlength="6" maxlength="150" required>
+                            </div>
+                            <p class="password-same password-same-color" id="password-same" th:text="#{label_password_same}"></p>
+                            <button class="deactivate" id="submit" type="submit" disabled th:text="#{button_register}"></button>
+                        </div>
+                    </form>
+                    <div class="line"></div>
+                 <!--   <div class="or">
+                        <div class="line"></div>
+                        <p th:text="#{text_or}"></p>
+                        <div class="line"></div>
+                    </div>
+                    <div class="dif">
+                        <div class="fb" th:each="url : ${urls}">
+                            <a th:href="${url.value}">
+                                <span th:text="#{text_log_in}"></span>
+                                <img th:if="${url.key} == 'Google'" th:src="@{/resources/img/login/google.png}" alt="">
+                                &lt;!&ndash;<img th:if="${url.key} == 'Facebook'" th:src="@{/resources/img/login/vk.png}" alt="">&ndash;&gt;
+                            </a>
+
+                        </div>
+                    </div>-->
+                </div>
+                <div class="signup">
+                    <p th:text="#{text_have_an_account} + '?'"></p>
+                    <a th:href="@{/login}" th:text="#{text_to_come_in}"></a>
+                </div>
+                <!--<div class="apps">
+                    <p th:text="#{text_install_the_app}"></p>
+                    <div class="icons">
+                        <a href="#"><img th:src="@{/resources/img/login/appstore.png}" alt="appstore"></a>
+                        <a href="#"><img th:src="@{/resources/img/login/googleplay.png}" alt="googleplay"></a>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+<!--        <div class="links">
+            <ul>
+                <li><a th:href="@{/about_us}" th:text="#{text_about_us}"></a></li>
+                <li><a th:href="@{/support}" th:text="#{text_support}"></a></li>
+                <li><a th:href="@{/api}" th:text="#{text_api}"></a></li>
+                <li><a th:href="@{/info/confidentiality}" th:text="#{text_confidentiality}"></a></li>
+                <li><a th:href="@{/terms}" th:text="#{text_terms}"></a></li>
+            </ul>
+        </div>-->
+
+        <!-- Footer -->
+        <div class="copyright">
+            <p th:insert="fragments.html :: footer-login"></p>
+        </div>
+
+    </div>
+</div>
+</html>

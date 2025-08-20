@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:include="fragments.html :: header-login">
+  <title id="pageTitle">HandsApp - API</title>
+</head>
+
+<!-- Navigation -->
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:insert="fragments.html :: navigation"></nav>
+
+<!-- Page Content -->
+<section class="main" sec:authorize="isAuthenticated()">
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="frame-title-create-form">
+        <h2>REST-API</h2>
+        <h3>Используется Basic-Auth</h3>
+      </div>
+      <div class="frame-content-create-form">
+        <div class="form-create">
+          <p><b>Выборка постов по ключевому слову</b></p>
+          <a href="https://handsapp.top/api/post?search=москва">
+            <span th:text="'GET https://handsapp.top/api/post?search=москва'"></span>
+          </a>
+          <br/><br/>
+          <p><b>Выборка всех постов</b></p>
+          <a href="https://handsapp.top/api/post">
+            <span th:text="'GET https://handsapp.top/api/post'"></span>
+          </a>
+          <br/><br/>
+          <p><b>Поиск поста по ID</b></p>
+          <a href="https://handsapp.top/api/post/284">
+            <span th:text="'GET https://handsapp.top/api/post/284'"></span>
+          </a>
+          <br/><br/>
+          <p><b>Создание поста</b></p>
+          <a href="https://handsapp.top/api/post">
+            <span th:text="'POST https://handsapp.top/api/post'"></span>
+          </a>
+          <br/><br/>
+          <p><b>Пример запроса</b></p>
+          <p><b>Редактирование поста</b></p>
+          <a href="https://handsapp.top/api/post/294">
+            <span th:text="'PUT https://handsapp.top/api/post/294'"></span>
+          </a>
+          <br/><br/>
+          <p><b>Пример запроса</b></p>
+          <p><b>Удаление поста</b></p>
+          <a href="https://handsapp.top/api/post/295">
+            <span th:text="'DELETE https://handsapp.top/api/post/295'"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer th:insert="fragments.html :: footer"></footer>
+    </div>
+
+    <!-- Right Column -->
+    <div th:insert="fragments.html :: right-column"></div>
+  </div>
+</section>
+
+</body>
+</html>
