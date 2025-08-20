@@ -39,13 +39,3 @@ db.postgres.login = ${DB_LOGIN}
 
 db.postgres.password = ${DB_PASSWORD}
 
-S3 (Yandex) (application.properties)
-
-application.bucket.name = ${BUCKET_NAME_S3}
-
-cloud.aws.credentials.access-key = ${ACCESS_KEY_S3}
-
-cloud.aws.credentials.secret-key = ${SECRET_KEY_S3}
-
-cloud.aws.region.static = ${REGION_S3}
-
