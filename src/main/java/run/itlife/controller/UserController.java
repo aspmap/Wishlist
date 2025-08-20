@@ -33,10 +33,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import static run.itlife.utils.EditImage.resizeImage;
 import static run.itlife.utils.OtherUtils.generateFileName;
@@ -46,10 +42,6 @@ import static run.itlife.utils.Properties.Files.IMAGE_WIDTH;
 import static run.itlife.utils.Properties.Paths.*;
 import static run.itlife.utils.SecurityUtils.hasRole;
 
-//UserController, отвечающий за логин юзеров и т.д.
-//Создаем в папке view страницу register.html. Далее необходимо сделать, чтобы мы пересылали данные в контроллер.
-//У UserController будет страница по которой будет идти регистрация. Для этого нужно сделать форму и она уже будет
-//идти на контроллер для регистрации
 @Controller
 public class UserController {
     private static String authorizationRequestBaseUri = "oauth2/authorization";
