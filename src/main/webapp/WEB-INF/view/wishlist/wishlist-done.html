@@ -45,14 +45,20 @@
                       </td>
                       <td class="td-wishlist-text">
                         <p class="wishlist-text-logo" th:text="${wishlistAll_view.nameWish}"></p>
-                        <p class="wishlist-text" th:text="#{text_wishlist_description} + ' ' + ${wishlistAll_view.description}"></p>
-                        <p class="wishlist-text" th:text="#{text_wishlist_price} + ' ' + ${wishlistAll_view.price} + ' ' + #{text_wishlist_rub}"></p>
-                        <span class="wishlist-text" th:text="#{text_wishlist_link} + ' '"></span><a class="wishlist-text" th:href="${wishlistAll_view.link}" th:text="${wishlistAll_view.link}"></a>
+                        <b class="wishlist-text" th:text="#{text_wishlist_description}"></b>
+                        <span class="wishlist-text" th:text="${wishlistAll_view.description}"></span>
+                        <br/>
+                        <b class="wishlist-text" th:text="#{text_wishlist_price}"></b>
+                        <span class="wishlist-text" th:text="${wishlistAll_view.price} + ' ' + #{text_wishlist_rub}"></span>
+                        <br/>
+                        <b class="wishlist-text" th:text="#{text_wishlist_link}"></b>
+                        <a class="wishlist-text" th:href="${wishlistAll_view.link}" th:text="${wishlistAll_view.link}"></a>
                       </td>
                     </tr>
                   </table>
                 </div>
               </div>
+              <hr>
             </div>
             <div th:if="${wishlistIsdone.isEmpty()}">
               <div class="media-body">

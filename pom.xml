@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>run.itlife</groupId>
     <artifactId>Wishlist</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>HandsApp Maven Webapp</name>
